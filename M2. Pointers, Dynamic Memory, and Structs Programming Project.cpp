@@ -1,21 +1,79 @@
-// M2. Pointers, Dynamic Memory, and Structs Programming Project.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Reverse Array Program.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
+
 using namespace std;
+
+void getArraySize(int& size);
+int sizeVerification(int size);
+int* getArray(int size);
+int* reverseArray(const int arr[], int size);
+void printOriginalArray(const int arr[], int size);
+void printReversedArray(const int reversedArr[], int size);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    int size;
+    
+    getArraySize(size);
+    size = sizeVerification(size);
+
+    int* arr = getArray(size);
+
+    printOriginalArray(arr, size);
+
+    int* reversedArr = reverseArray(arr,size);
+    
+    printReversedArray(reversedArr, size);
+
+    delete[] arr;
+    delete[] reversedArr;
+    reversedArr = nullptr;
+    arr = nullptr;
+    return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void getArraySize(int& size) {
+    cout << "What is the array size:";
+    cin >> size;
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+int sizeVerification(int size) {
+    while (size <= 0) {
+        cout << "Invalid size, please enter a nonzero positive integer: \n";
+        cin >> size;
+     }
+    return size;
+}
+
+int* getArray(int size) {
+    int* arr = new int[size];
+    for (int i = 0; i < size; i++) {
+        cout << "What integer for index " << i << "?" << endl;
+        cin >> arr[i];   
+    }
+    return arr;
+}
+
+int* reverseArray(const int arr[], int size) {
+    int* reversedArr = new int[size];
+    for (int i = 0; i < size; i++) {
+        reversedArr[i] = arr[size - 1 - i];
+    }
+    return reversedArr;
+}
+
+void printOriginalArray(const int arr[], int size) {
+    cout << "Original Array: ";
+        for (int i = 0; i < size; i++) {
+            cout << arr[i] << " ";
+    }   
+}
+void printReversedArray(const int reversedArr[], int size) {
+    cout << "Reversed Array: ";
+    for (int i = 0; i < size; i++) {
+        cout << reversedArr[i] << " ";
+    }
+}
+
