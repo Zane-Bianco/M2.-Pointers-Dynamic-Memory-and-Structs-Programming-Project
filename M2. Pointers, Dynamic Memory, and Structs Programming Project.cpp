@@ -1,15 +1,37 @@
 // Reverse Array Program.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+//Creates an array that sizes varies on input then populates the array from input
+//Then creates another array that stores the original array but in reverse
+//Then outputs the orginial and reversed array
+//Then clears the allocated memory 
 
 #include <iostream>
 
 using namespace std;
 
+//Input: Memory Address for variable "size"
+//Preconditions:None
+//Postconditions: Returns integer variable "size" used to dynamically allocate an array of said 
 void getArraySize(int& size);
-int sizeVerification(int size);
+
+//Input: "Size" variable
+//Preconditions: "size" must be an > 0 integer
+//Postconditions: populates array with "size" integers from input and returns to arr pointer variable
 int* getArray(int size);
+
+//Input:"arr" array and "size" variable
+//Precondtions: "arr" array must be populated and "size" variable must be valid
+//Postconditions: iterates through "arr" array and assigns them to "reversedArr" in reverse using a loop
 int* reverseArray(const int arr[], int size);
+
+//Input: the "arr" array and "size" variable
+//Preconditions: "arr" array must be populated and "size" variable must be valid
+//Postconditions: prints out "Originial Array: " then the elements within "arr" array
 void printOriginalArray(const int arr[], int size);
+
+//Input: the "reversedArr" array and "size" variable
+//Preconditions: "reversedArr" array must be populated and "size" variable must be valid
+//Postconditions: prints out "Reversed Array: " then the elements within "reversed" array
 void printReversedArray(const int reversedArr[], int size);
 
 int main()
@@ -17,7 +39,6 @@ int main()
     int size;
     
     getArraySize(size);
-    size = sizeVerification(size);
 
     int* arr = getArray(size);
 
@@ -36,15 +57,11 @@ int main()
 
 void getArraySize(int& size) {
     cout << "What is the array size:";
-    cin >> size;
-}
-
-int sizeVerification(int size) {
-    while (size <= 0) {
-        cout << "Invalid size, please enter a nonzero positive integer: \n";
-        cin >> size;
-     }
-    return size;
+    while (!(cin >> size) || size <= 0) {
+        cout << "Invalid input. Please enter a nonzero positive integer: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
 }
 
 int* getArray(int size) {
