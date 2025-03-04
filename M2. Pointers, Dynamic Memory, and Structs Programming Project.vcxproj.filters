@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Reverse Array Program.cpp">
+    <ClCompile Include="M2. Pointers, Dynamic Memory, and Structs Programming Project.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
